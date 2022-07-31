@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .mb-3 {
+      margin-bottom: 1.5rem;
+    }
+    .ml-2 {
+      margin-left: 1rem;
+    }
+    .text-capitalize {
+      text-transform: capitalize;
+    }
+  </style>
+  <script>
+    // Homework:
+    // Taọ 1 array: 1 dãy số ngẫu nhiên với độ dài 20 số;
+    // tạo 1 ô input 
+    // nhập vào 1 số bất kỳ;
+    // in ra những số lớn hơn số đã nhập vào;
+    // Bài 2: đếm số lần xuất hiện của số vừa nhập có trong mảng;
+
+    // declare a variable type array with name math
+    var math = [
+      {
+        key: 'add',
+        icon: '+'
+      },
+      {
+        key: 'subtract',
+        icon: '-'
+      },
+      {
+        key: 'multiply',
+        icon: '*'
+      },
+      {
+        key: 'divide',
+        icon: '/'
+      },
+      {
+        key: 'modulus',
+        icon: '%'
+      }
+    ]
+
+    // DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      // var a = 10;
+      // var b = 20;
+      // var c = a + b;
+      // document.getElementById('baitap-1').innerHTML = c;
+
+      // get element by id: baitap-2 and chain cleaning of the string
+      // var str = document.getElementById('baitap-2').innerHTML;
+      // str = str.trim();
+      // document.getElementById('baitap-2').innerHTML = str;
+
+      // onclick to id baitap-2-btn
+      // document.getElementById('baitap-2-btn').addEventListener('click', function() {
+      //   // // get value element by id 'baitap-2-a' 'baitap-2-b'
+      //   // var a = document.getElementById('baitap-2-a').value;
+      //   // var b = document.getElementById('baitap-2-b').value;
+      //   // // calculate
+      //   // var c = sum(a, b);
+      //   // // show result
+      //   // document.getElementById('result').innerHTML = c;
+
+      //   // render a calculator with id 'math'
+        
+      // });
+      var html = '';
+        math.forEach(element => {
+          html += '<div class="mb-3"><input type "number" id="' + element["key"] + '-a">';
+          html += '<span> ' + element.icon + ' </span>';
+          html += '<input type "number" id="' + element.key + '-b">';
+          html += '<button onclick="calc()" data-key="' + element.key + '" class="ml-2 text-capitalize" id="' + element.key + '-btn">' + element.key + '</button>';
+          html += '<span id="' + element.key + '-result"></span></div>';
+        });
+        document.getElementById('math').innerHTML = html;
+
+        // math.forEach(element => {
+        //   document.getElementById(element.key + '-btn').addEventListener('click', function() {
+        //     var a = document.getElementById(element.key + '-a').value;
+        //     var b = document.getElementById(element.key + '-b').value;
+        //     var c = sum(a, b);
+        //     document.getElementById(element.key + '-result').innerHTML = c;
+        //   });
+        // });
+
+
+    });
+
+    function sum(a, b) {
+      return parseInt(a) + parseInt(b);
+    }
+
+    // sort array
+    function sortArray(arr) {
+      return arr.sort(function(a, b) {
+        return a - b;
+      });
+    }
+
+    function calc() {
+      var key = event.target.dataset.key;
+      var a = document.getElementById(key + '-a').value;
+      var b = document.getElementById(key + '-b').value;
+      a = parseInt(a);
+      b = parseInt(b);
+      var c = 0;
+      switch(key) {
+        case 'add':
+          c = a + b;
+          break;
+        case 'subtract':
+          c = a - b;
+          break;
+        case 'multiply':
+          c = a * b;
+          break;
+        case 'divide':
+          c = a / b;
+          break;
+      }
+      document.getElementById(key + '-result').innerHTML = c;
+    }
+  </script>
+</head>
+<body>
+  <!-- <div id="baitap-1"></div>
+  <div>
+    <input type="number" id="baitap-2-a">
+    <span>+</span>
+    <input type="number" id="baitap-2-b">
+    <button id="baitap-2-btn">Sum</button>
+    <span id="result"></span>
+  </div> -->
+  <div id="math"></div>
+</body>
+</html>
